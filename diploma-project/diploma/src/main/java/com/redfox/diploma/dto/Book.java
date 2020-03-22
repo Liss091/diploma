@@ -1,10 +1,9 @@
 package com.redfox.diploma.dto;
 
-import sun.util.calendar.LocalGregorianCalendar;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -39,17 +38,17 @@ public class Book {
     @Column(name = "published_date")
     private Date publishedDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "book_authors",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private List<Author> authors;
+    private Set<Author> authors;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_genres",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private List<Genre> genres;
+    private Set<Genre> genres;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
@@ -119,30 +118,35 @@ public class Book {
         this.price = price;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 
-    public List<Genre> getGenres() {
+    public Set<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Genre> genres) {
+    public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", rating=" + rating +
-                ", price=" + price +
-                ", authors=" + authors +
+                "id=" + getId() +
+                ", title='" + getTitle() + '\'' +
+                ", totalPages=" + getTotalPages() +
+                ", rating=" + getRating() +
+                ", isbn='" + getIsbn() + '\'' +
+                ", price=" + getPrice() +
+                ", publishedDate=" + getPublishedDate() +
+                ", authors=" + getAuthors() +
+                ", genres=" + getGenres() +
+                ", publisher=" + getPublisher() +
                 '}';
     }
 }
