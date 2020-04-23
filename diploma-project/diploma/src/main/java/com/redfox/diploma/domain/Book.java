@@ -1,4 +1,4 @@
-package com.redfox.diploma.dto;
+package com.redfox.diploma.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

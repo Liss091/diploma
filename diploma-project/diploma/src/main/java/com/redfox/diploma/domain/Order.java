@@ -1,4 +1,4 @@
-package com.redfox.diploma.dto;
+package com.redfox.diploma.domain;
 
 import org.springframework.data.annotation.CreatedDate;
 
