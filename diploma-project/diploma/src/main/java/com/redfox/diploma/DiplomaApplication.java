@@ -2,6 +2,7 @@ package com.redfox.diploma;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
@@ -19,6 +20,13 @@ public class DiplomaApplication {
 	public ServletRegistrationBean servletRegistrationBean() {
 		FacesServlet servlet = new FacesServlet();
 		return new ServletRegistrationBean(servlet, "*.jsf");
+	}
+
+	@Bean
+	public FlywayMigrationStrategy flywayMigrationStrategy() {
+		return flyway -> {
+			// do nothing
+		};
 	}
 
 }
