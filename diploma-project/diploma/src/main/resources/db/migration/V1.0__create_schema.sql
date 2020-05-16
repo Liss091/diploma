@@ -20,6 +20,7 @@ CREATE TABLE books(
   isbn           VARCHAR(13) NULL,
   published_date DATE,
   publisher_id   INT NULL,
+  price          numeric(10,2),
   PRIMARY KEY(book_id),
   CONSTRAINT fk_publisher
     FOREIGN KEY(publisher_id)
@@ -58,3 +59,24 @@ CREATE TABLE book_genres(
     FOREIGN KEY(genre_id)
     REFERENCES genres(genre_id) ON DELETE CASCADE
 );
+
+CREATE TABLE orders
+(
+    order_id integer NOT NULL,
+    creation_date timestamp without time zone NOT NULL,
+    amount numeric(10,2) NOT NULL,
+    first_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    adress character varying(500) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT orders_pkey PRIMARY KEY (order_id)
+)
+
+CREATE TABLE public.book_order
+(
+    book_id integer NOT NULL,
+    order_id integer NOT NULL,
+    CONSTRAINT "FK_BookOrder_Book" FOREIGN KEY (book_id)
+        REFERENCES public.books (book_id) MATCH SIMPLE
+    CONSTRAINT "FK_BookOrder_Order" FOREIGN KEY (book_id)
+        REFERENCES public.orders (order_id) MATCH SIMPLE
+)
