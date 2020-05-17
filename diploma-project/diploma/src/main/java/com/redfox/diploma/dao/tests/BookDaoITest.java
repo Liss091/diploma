@@ -24,6 +24,17 @@ public class BookDaoITest {
     public void testFindAll() {
         List<Book> books = testObject.findAll();
 
-        Assert.assertNotNull(books);
+        Assert.assertEquals(1091, books.size());
     }
+
+    @Test
+    public void testFindByCriteria() {
+        List<Book> books = testObject.findByCriteria("Programming Agile Mary Poppendieck, Highsmith");
+
+        Assert.assertNotNull(books);
+        Assert.assertEquals(1, books.size());
+        Assert.assertEquals(1L, books.get(0).getId().longValue());
+    }
+
+
 }
