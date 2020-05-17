@@ -6,11 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "authors")
-public class Author {
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue

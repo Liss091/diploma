@@ -9,7 +9,25 @@
 </h:head>
 
 <h:body >
-    <h:outputText>Book catalog!!!</h:outputText>
-    <p:spinner />
+    <h2>Book catalog</h2>
+    <h:form>
+        #{bookCatalog.msg}
+    </h:form>
+
+    <!--<h:dataTable value="#{bookCatalog.books}" var="book">-->
+
+        <!--<h:column>-->
+            <!--&lt;!&ndash; column header &ndash;&gt;-->
+            <!--<f:facet name="header">Book Id</f:facet>-->
+            <!--&lt;!&ndash; row record &ndash;&gt;-->
+            <!--<h:outputText value="#{book.id}"/>-->
+        <!--</h:column>-->
+
+        <!--<h:column>-->
+            <!--<f:facet name="header">Book Title</f:facet>-->
+            <!--#{book.title}-->
+        <!--</h:column>-->
+
+    <!--</h:dataTable>-->
 </h:body>
 </html>

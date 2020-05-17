@@ -4,9 +4,11 @@ import com.redfox.diploma.dao.BookDao;
 import com.redfox.diploma.domain.Book;
 import com.redfox.diploma.services.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SearchServiceImpl implements SearchService {
 
     private BookDao bookDao;
